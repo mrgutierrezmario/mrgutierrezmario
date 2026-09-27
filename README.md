@@ -1,11 +1,13 @@
 # Mario Gutierrez
 
-**M.G. Network and Technology Solutions** — I build practical software around
-real infrastructure: services that run on hardware I manage, with the auth,
-storage, backups, monitoring and runbooks done properly — not just the demo.
+**[M.G. Network and Technology Solutions](https://mgnetsolutions.com)** — I
+build practical software around real infrastructure: services that run on
+hardware I manage, with the auth, storage, backups, monitoring and runbooks
+done properly — not just the demo.
 
-Everything below runs in production on a Mac mini at home, is open source,
-and has a documented way back up when it breaks.
+The three apps below run in production on a Mac mini at home, are open
+source, and have a documented way back up when they break. The fourth
+project is the Kubernetes staging platform built around them.
 
 ## Projects
 
@@ -41,6 +43,20 @@ a graduate course since March 2026.
 
 `Python · FastAPI · WebSockets · faster-whisper · PostgreSQL · MinIO · React · Docker · OAuth 2.0`
 
+### [homelab-gitops](https://github.com/mrgutierrezmario/homelab-gitops) — staging that proves the backups
+
+A Kubernetes (k3s) staging environment, managed with Argo CD, that runs
+*copies* of all three apps restored from the previous night's encrypted
+backups — with production credentials scrubbed from each copy. Every merge
+to `main` is built by CI, pushed to GHCR, and deployed to staging by Argo CD
+Image Updater committing the new digest to git, so `git log` is the
+deployment history; a weekly job restores both apps again and smoke-tests
+them. Built and verified in September 2026, then paused until it moves to
+its own machine — the write-up of why is in the repo. Production is watched
+meanwhile by Prometheus + Grafana on the Mac.
+
+`Kubernetes (k3s) · Argo CD · Helm · Sealed Secrets · GitHub Actions · GHCR · Prometheus · Grafana`
+
 ## How they're built
 
 - **Operations first:** nightly encrypted off-site backups with a scripted
@@ -64,9 +80,10 @@ a graduate course since March 2026.
 | Backend | FastAPI, SQLAlchemy + Alembic, PostgreSQL, WebSockets, APScheduler |
 | Frontend | React, Vite, TypeScript |
 | AI | Anthropic Claude, Google Gemini, OpenAI, Ollama; MCP servers; Whisper |
-| Infrastructure | Docker & Compose, Linux and macOS servers, Tailscale, S3/MinIO, GitHub Actions |
+| Infrastructure | Docker & Compose, Kubernetes (k3s), Helm, Argo CD, Linux and macOS servers, Tailscale, Cloudflare Tunnel, S3/MinIO, GitHub Actions |
+| Observability | Prometheus, Grafana, UptimeRobot, health endpoints built for monitors |
 | Practices | migrations, encrypted backups and tested restores, OAuth integrations, rate limiting, runbooks |
 
 ## Contact
 
-mg.net.tech@gmail.com
+[mgnetsolutions.com](https://mgnetsolutions.com) · mario.gutierrez@mgnetsolutions.com
