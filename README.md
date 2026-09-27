@@ -18,7 +18,7 @@ Form 4) and institutional investors (13F) from their legally required
 disclosures. Scores every ticker on who is buying, weights each member by how
 their past buys actually did against SPY, and snapshots every score so the
 hit-rate of each label at 30/60/90 days is a number, not a claim.
-[Live site](https://mgnts-stock-tracker.tail3659a6.ts.net) — no account needed.
+[Live site](https://insidertrack.mgnetsolutions.com) — no account needed.
 
 `Python · FastAPI · PostgreSQL · React + TypeScript · APScheduler · Docker · Tailscale Funnel`
 
